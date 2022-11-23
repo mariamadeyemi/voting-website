@@ -49,22 +49,22 @@
     <ul>
       <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
       <li><a class="nav-link scrollto" href="#about">About</a></li>
-      <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-      <li><a class="nav-link scrollto" href="#gallery">Political Parties</a></li>
+      
+      <!-- <li><a class="nav-link scrollto" href="#gallery"></a></li> -->
        <li class="dropdown"><a href="#"><span>Voting Page</span> <i class="bi bi-chevron-down"></i></a>
       <ul>
         <li><a href="/vote">Presidential Election</a></li>
         <li><a href="/vote">Gubernatorial Election</a></li>
         </ul>
-        <li class="dropdown"><a href="#"><span>Parties</span> <i class="bi bi-chevron-right"></i></a>
+        <li class="dropdown"><a href="#"><span>Political Parties</span> <i class="bi bi-chevron-right"></i></a>
           <ul>
-            <li><a href="#">AYC</a></li>
-            <li><a href="#">DPPN</a></li>
-            <li><a href="#">FDP</a></li>
-            <li><a href="#">ZYA</a></li>
-            <li><a href="#">GET</a></li>
+            <%for(const party of parties){ %>
+              <li><a href="/party/<%- party.id %>"><%- party.acronym %></a></li>
+           <% }%>
+           
           </ul>
         </li>
+        <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
       </ul>
     
     <i class="bi bi-list mobile-nav-toggle"></i>

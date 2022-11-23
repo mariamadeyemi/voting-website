@@ -29,4 +29,24 @@ let addParty = async(req, res)=>{
   }
   }  
 
-module.exports = { partyForm, addParty }
+  let getParties = async (req, res) => {
+    try {
+        let parties = await Party.fetch()
+        res.render('index', { parties })
+    } catch (error) {
+        res.send(error.message)
+    }
+}
+
+let getParty = async (req, res) => {
+    let { id } = req.params
+    try {
+        let party = await Party.fetchById(id)
+          res.render("party", {party})
+    } catch (error) {
+        res.send(error.message)
+    }
+
+}
+
+module.exports = { partyForm, addParty, getParties, getParty }

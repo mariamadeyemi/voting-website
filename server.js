@@ -6,7 +6,7 @@ const { voterForm, addVoter } = require('./controller/voterController');
 const session = require('express-session');
 const bcrypt = require('bcrypt');
 const { candidateForm, addCandidate } = require('./controller/candidateController');
-const { partyForm, addParty } = require('./controller/partyController');
+const { partyForm, addParty, getParties, getParty } = require('./controller/partyController');
 const { electionForm, addElection } = require('./controller/electionController');
 const partyValidators = require('./validators/partyValidator');
 
@@ -37,10 +37,7 @@ app.use((req, res, next)=>{
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
-// use res.render to load up an ejs view file
-app.get("/", (req, res)=>{
-   res.render("index");
-})
+app.get("/", getParties)
 app.get("/dashboard", (req, res)=>{
   res.render("dashboard");
 })
@@ -54,6 +51,7 @@ app.get("/add-candidate", candidateForm)
 app.post("/add-candidate", addCandidate)
 app.get("/add-party", partyForm)
 app.post("/add-party", partyValidators, addParty)
+app.get("/party/:id", getParty)
 app.get("/add-election", electionForm)
 app.post("/add-election", addElection)
 
@@ -69,9 +67,7 @@ app.get("/vote", (req, res)=>{
 app.get("/candidate", (req, res)=>{
   res.render("candidate");
 })
-app.get("/party", (req, res)=>{
-  res.render("party");
-})
+
 
 
 

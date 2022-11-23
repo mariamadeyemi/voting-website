@@ -7,7 +7,6 @@
    <link href="../public/style2.css" rel="stylesheet">
    <title>Document</title>
    <meta charset="UTF-8">
-<title>EJS Is Fun</title>
 
 <!-- CSS (load bootstrap from a CDN) -->
 <link href="bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
@@ -20,31 +19,21 @@
 </style>
 </head>
 <body>
-   <div class="container-fluid">
-       <h1 class="heading">Your Vote is Secure, Your Vote Counts.</h1>
-       <p>You can only vote for one candidate</p>
-       <div class="col d-flex justify-content-center"><div class="card"></card></div>.
+   <div class="container-fluid">      
+       <div class="col d-flex justify-content-center"><div class="card"></div>
        <div class="row">
         <div class="col-sm-6 col d-flex justify-content-center">
            <div class="card" style="border: none;">
               <div class="card-body" id="card">
-                 <h4>&#9864;Presidency Student Council</h4>
-                 <img src="../public/images/candidate1.jpg" style="border-radius:50% ; width: 100px; height: 100px;">
-                 <p>Muhammadu Buhari</p>
-                 <a href="/candidate" class="details">View Details</a>
+                 <h4>&#9864;<%-party.name%></h4>
+                 <img src="/<%-party.logo%>" style="border-radius:50% ; width: 100px; height: 100px;">
+                 <p><%-party.slogan%></p>
+                 
               </div>
           </div>
         </div>
-        <div class="col-sm-6">
-           <div class="card" style="border: none;">
-              <div class="card-body" id="card">
-                 <h4>&#9864;Governorship Student Council</h4>
-                 <img src="../public/images/candidate2.png" style="border-radius:50% ; width: 100px; height: 100px;">
-                 <p>Orungbemi Favour</p>
-                 <a href="/candidate" class="details">View Details</a>
-              </div>
-          </div>
-        </div>
+      
+        
       </div>
    </div>
 

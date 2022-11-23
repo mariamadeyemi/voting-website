@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<body class="container">
+  <%- include('../partials/head'); %>
+<header>
+  <%- include('../partials/header'); %>
+</header>
+
+<main>
+  <!-- <div class="jumbotron">
+    <h1>This is great</h1>
+    <p>FAVOUR IS BARELY SURVIVING WAAAAAAAA</p>
+  </div> -->
+  <%- include('../partials/head'); %>
+  <div class="container-fluid" style="margin-top: 50px;">
+    <img src="images/vote.jfif" width="80px" height="80px"> <h1>ELECTION</h1>
+</div>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Logo</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">HOME</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">OFFICE OF THE CHAIRMAN</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">VOTER EDUCATION</a>
+          </li>  
+          <li class="nav-item">
+            <a class="nav-link" href="#">RESOURCES</a>
+          </li>  
+          <li class="nav-item">
+            <a class="nav-link" href="#">ELECTIONS</a>
+          </li>  
+          <li class="nav-item">
+            <a class="nav-link" href="#">NEWS</a>
+          </li>  
+          <li class="nav-item">
+            <a class="nav-link" href="#">CONTACT US</a>
+          </li>  
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">POLITICAL PARTIES</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="index2.html">LIST OF POLITICAL PARTIES</a></li>
+              <li><a class="dropdown-item" href="#">LIST OF CANDIDATES FOR 2023 ELECTIONS</a></li>
+              <li><a class="dropdown-item" href="#">CONSTITUTIONS & MANIFESTOS</a></li>
+              <li><a class="dropdown-item" href="#">POLITICAL PARTY FORM</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+        <h1 style="color: #404040;">Political Parties</h1>
+        <p>There are 5 registered political parties</p>
+        <table id="customers">
+          <tr>
+            <th>Id</th>
+            <th style="width: 150px;">Logo</th>
+            <th style="width: 400px;">Party Name</th>
+            <th>Party Acronym</th>
+            <th>Slogan</th>
+          </tr>
+          <tr data-href="/aa">
+            <td>1</td>
+            <td><img src="images/AA.jpg" width="50px" height="45px"></td>
+            <td>Action Alliance</td>
+            <td>ADP</td>
+            <td>Let the Masses Live</td>
+          </tr>
+          <tr data-href="/bp">
+            <td>2</td>
+            <td><img src="images/BootParty.jpg" width="50px" height="50px"></td>
+            <td>Boot Party</td>
+            <td>BP</td>
+            <td>Because of Our Tomorrow</td>
+          </tr>
+          <tr data-href="/lp">
+            <td>3</td>
+            <td><img src="images/LP.jpg" width="50px" height="50px"></td>
+            <td>Labour Party</td>
+            <td>LP</td>
+            <td>Equal Opportunity and Social Justice</td>
+          </tr>
+          <tr data-href="/prp">
+            <td>4</td>
+            <td><img src="images/PRP.png" width="50px" height="50px"></td>
+            <td>Peoples Redemption Party</td>
+            <td>PRP</td>
+            <td>Victory</td>
+          </tr>
+          <tr data-href="/sdp">
+            <td>5</td>
+            <td><img src="images/SDP.png" width="50px" height="50px"></td>
+            <a><td>Social Democratic Party</td></a>
+            <td>SDP</td>
+            <td>Progress</td>
+          </tr>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded",()=>{
+      const rows = document.querySelectorAll("tr[data-href]");
+      
+
+      rows.forEach(row => {
+        row.addEventListener("click", () =>{
+          window.location.href = row.dataset.href;
+        })
+      })
+    });
+  </script>
+</main>
+
+<footer>
+  <%- include('../partials/footer'); %>   
+</footer>
+
+</body>
+</html>

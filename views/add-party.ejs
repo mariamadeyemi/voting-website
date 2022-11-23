@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/admin_login.css">
+    <link rel="stylesheet" href="public/bootstrap/css/bootstrap.css">
+    <link href="../public/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../public/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../public/font-awesome/css/font-awesome.css">
+   
+</head>
+<body>
+
+    <div class="container">
+        <h2 class="center mt-5">Add a Party</h2>
+        <hr>
+        
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="">Name</label>
+                <input type="text" name="name" id="name" class="form-control">                
+            </div>
+            <div class="form-group">
+                <label for="">Acronym</label>
+                <input type="text" name="acronym" id="acronym" class="form-control">
+            </div>
+          
+            <div class="form-group">
+                <label for="">Slogan</label>
+                <textarea name="slogan" id="slogan" cols="30" rows="5" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="">Logo</label>
+                <input type="file" accept="image/*" name="logo" id="logo" class="form-control">
+            </div>
+
+            <button class="btn btn-primary btn-sm">Submit</button>
+        </form>
+    </div>
+
+    <% for( let formName in locals.formErrors || {}) { %>
+        <script>
+            var elem = document.querySelector('[name=<%- formName%>]')
+            elem.classList.add('is-invalid');
+            elem.parentNode.insertAdjacentHTML('beforeend', '<span class="text-sm text-danger font-italic"><%- locals.formErrors[formName].msg %></span>')
+        </script>
+      <% } %>
+      <% for( let formName in locals.formBody || {}) { %>
+        <script>
+            var elem = document.querySelector('[name=<%- formName%>]')
+            if (elem.type == 'radio' || elem.type == 'checkbox') {
+              document.querySelector('[name=<%- formName%>][value=<%- locals.formBody[formName] %>]').checked = true
+            }else if(elem.nodeName.toLowerCase() == "select" ){
+              elem.querySelector('[value=<%- locals.formBody[formName] %>]').selected = true
+            }else
+            elem.value = "<%- locals.formBody[formName] %>"
+        </script>
+      <% } %>
+    
+    <script src="../public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="public/bootstrap/js/jquery.js"></script>
+    <script src="public/bootstrap/js/popper.min.js"></script>
+    <script src="public/bootstrap/js/boostrap.js"></script>
+</body>
+</html>

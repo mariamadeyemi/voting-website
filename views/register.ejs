@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/register.css">
+    <title>Register</title>
+</head>
+<body>
+    <p class="sign-up">sign up to vote</p>
+    <div class="register-container">
+        <!-- <img src="images/vote-box.jpg" alt="vote-box" class="register-img"> -->
+
+        <form action="/register" method="post" class="scale-up-center" enctype="multipart/form-data">
+            <p class="voter">become a verified voter</p>
+            <label for="first_name">first name</label>
+            <input type="text" name="first_name" id="first_name">
+    
+            <label for="surname">surname</label>
+            <input type="text" name="surname" id="surname">
+    
+            <label for="">other name</label>
+            <input type="text" name="other_name" id="other_name">
+    
+            <label for="">date of birth</label>
+            <input type="date" name="date_of_birth" id="dob">
+    
+            <label for="">state of origin</label>
+            <input type="text" name="state_of_origin" id="state">
+    
+            <label for="">LGA</label>
+            <input type="text" name="lga" id="lga">
+
+            <label for="">Address</label>
+            <input type="text" name="address" id="address">
+
+            <label>gender</label> <br>
+            <label class="label">Male
+                <input type="radio" name="gender"/>
+                <span></span>
+              </label>
+              <label class="label">Female
+                <input type="radio" name="gender" />
+                <span></span>
+              </label>
+             
+                        
+           
+    
+            <label for="">email</label>
+            <input type="text" name="email_address" id="email">
+    
+            <label for="">phone number</label>
+            <input type="text" name="phone_number" id="phone">
+    
+            <label for="">password</label>
+            <input type="text" name="password" id="password">
+    
+            <label for="photo">upload picture</label>
+            <input type="file" accept="image/*" name="photo" id="photo">
+    
+            <button type="submit">Submit</button>
+
+            <p class="link"><a href="/admin-login">sign in as electoral officer</a> </p>
+        </form>
+    </div>
+
+    
+ 
+</body>
+</html>

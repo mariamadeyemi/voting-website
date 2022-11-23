@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway:wght@700&display=swap');
+
+:root {
+    --gradient: linear-gradient(to left top, #233329 10%, #f82249 90%) !important;
+    --primary: #f82249 !important;
+    --light-pink: #fb94a7 !important;
+    --secondary: #000019 !important;
+  }
+  
+  body {
+    background: #e5e5e5!important;
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  h1{
+    color: var(--secondary);
+    font-family: 'Raleway', sans-serif;
+  }
+
+ img{
+  width: 150px;
+  height: 150px !important;
+  margin-bottom: 00.7em;
+ }
+
+ .card{
+  padding: 0.8em;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+ }
+ 
+ .btn{
+  background-color: var(--primary);
+  color: #fff;
+  margin-bottom: 0.7em;
+ }
+
+ .btn:hover{
+  background-color: var(--light-pink);
+  color: #fff;
+ }
+
+  .heading{
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+  }
+ 
+ .tracking-in-expand-fwd{
+  animation: tracking-in-expand-fwd 0.8s linear both !important;
+ }
+ @keyframes tracking-in-expand-fwd{
+  0%{
+    letter-spacing: -.2em;
+    opacity: 0;
+  }
+  40%{
+    opacity: .6;
+  }
+  100%{
+    opacity: 1;
+  }
+  }
+  
+  
+  

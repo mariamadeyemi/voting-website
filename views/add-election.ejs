@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/admin_login.css">
+    <link rel="stylesheet" href="public/bootstrap/css/bootstrap.css">
+    <link href="../public/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../public/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../public/font-awesome/css/font-awesome.css">
+   
+</head>
+<body>
+    <div class="container">
+        <h2 class="center mt-5">New Election</h2>
+        <hr>
+        
+        <form action="" method="post" enctype="multipart/form-data">
+            
+            <div class="form-group">
+                <label>Election Name</label><br>
+                <select name="name" class="form-control">
+                    <option value="">Select</option>
+                    <option value="Presidential Election">Presidential Election</option>
+                    <option value="Gubernatorial Election">Gubernatorial Election</option>
+                </select>
+               
+            </div>
+
+            <div class="form-group">
+                <label>Office</label><br>
+                <select name="office" class="form-control">
+                    <option value="">Select</option>
+                    <option value="Office of the President">Office of the President</option>
+                    <option value="Office of the Governor">Office of the Governor</option>
+                </select>
+               
+            </div>
+
+            <div class="form-group">
+                <label>If Gubernatorial, select state:</label><br>
+                <!--- Nigeria states -->
+<select id="country-state" name="state">
+    <option value="AB">Abia State</option>
+    <option value="AD">Adamawa State</option>
+    <option value="AK">Akwa Ibom State</option>
+    <option value="AN">Anambra State</option>
+    <option value="BA">Bauchi State</option>
+    <option value="BY">Bayelsa State</option>
+    <option value="BE">Benue State</option>
+    <option value="BO">Borno State</option>
+    <option value="CR">Cross River State</option>
+    <option value="DE">Delta State</option>
+    <option value="EB">Ebonyi State</option>
+    <option value="ED">Edo State</option>
+    <option value="EK">Ekiti State</option>
+    <option value="EN">Enugu State</option>
+    <option value="FC">Federal Capital Territory</option>
+    <option value="GO">Gombe State</option>
+    <option value="IM">Imo State</option>
+    <option value="JI">Jigawa State</option>
+    <option value="KD">Kaduna State</option>
+    <option value="KN">Kano State</option>
+    <option value="KT">Katsina State</option>
+    <option value="KE">Kebbi State</option>
+    <option value="KO">Kogi State</option>
+    <option value="KW">Kwara State</option>
+    <option value="LA">Lagos</option>
+    <option value="NA">Nasarawa State</option>
+    <option value="NI">Niger State</option>
+    <option value="OG">Ogun State</option>
+    <option value="ON">Ondo State</option>
+    <option value="OS">Osun State</option>
+    <option value="OY">Oyo State</option>
+    <option value="PL">Plateau State</option>
+    <option value="SO">Sokoto State</option>
+    <option value="TA">Taraba State</option>
+    <option value="YO">Yobe State</option>
+    <option value="ZA">Zamfara State</option>
+</select>
+               
+            </div>
+
+            <div class="form-group">
+                
+                <label>Year</label><br>
+                <input type="number" name="year" min="1900" max="2099" step="1" value="2016" />
+                <!-- <select name="year" class="form-control">
+                    <option value="">Select Year</option>
+                    <option value="2018-2022">2018-2022</option>
+                    <option value="2023-2027">2023-2027</option>
+                </select> -->
+               
+            </div>
+
+            <div class="form-group">
+                <label for="">Start Date</label>
+                <input type="date" name="start_date" id="start" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="">End Date</label>
+                <input type="date" name="end_date" id="end" class="form-control">
+            </div>
+
+            <button class="btn btn-primary btn-sm">Submit</button>
+        </form>
+    </div>
+    
+    <script src="../public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="public/bootstrap/js/jquery.js"></script>
+    <script src="public/bootstrap/js/popper.min.js"></script>
+    <script src="public/bootstrap/js/boostrap.js"></script>
+</body>
+</html>

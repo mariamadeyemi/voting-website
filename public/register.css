@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway:wght@700&display=swap');
+
+:root {
+  --gradient: linear-gradient(to left top, #233329 10%, #f82249 90%) !important;
+  --primary: #f82249 !important;
+  --light-pink: #fb94a7 !important;
+  --secondary: #000019 !important;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+body{
+    background-color: #e5e5e5;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.register-container{
+  /* background-image: url("images/vote_compressed.png");
+    background-repeat: no-repeat;
+    background-size: cover; */
+    display: flex;
+    align-items: center;
+    max-width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+    margin-bottom: 1em;
+ }
+
+ form{
+  padding: 2rem;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+ }
+
+ input[type=text], [type=date], [type=file] {
+  width: 100%;
+  margin-bottom: 0.8rem;
+  padding: 0.6em;
+  outline: none;
+  border: none;
+ }
+
+ input[type=text], [type=date] {
+  background-color: #ccccff;
+ }
+
+ input[type=text]:focus, [type=date]:focus{
+    border: 2px solid var(--secondary);
+ }
+
+ form > label{
+    text-transform: capitalize;
+    margin-bottom: 0.7em;
+    color: var(--secondary);
+ }
+
+ p.sign-up{
+    text-align: center;
+    text-transform: capitalize;
+    margin-top: 0.5em;
+    /* margin-bottom: 1rem; */
+    color: var(--secondary);
+    font-size: 3rem;
+ }
+
+ p.voter{
+    color: var(--secondary);
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 1em;
+    text-transform: capitalize;
+ }
+
+ p.link{
+    margin-top: 1em;
+ }
+
+ p.link > a{
+    color: #2f3138;
+    font-size: 14px;
+    text-transform: capitalize;
+ }
+ .label {
+    display:block;
+    margin-bottom:0.5em;
+    position: relative; /* to contain absolute elements */
+    padding-left:30px; /* free space for custom radio button */
+    cursor: pointer;
+  }
+  /* hide default radio button  */
+  .label input[type=radio] {
+    position: absolute; /* prevent taking any space */
+    /* cross-browser hidingg */
+    opacity: 0;
+    width:0; 
+    height:0;
+  }
+  /* custom radio button */
+  label span {
+    position: absolute;
+    /* position to the free space in <label> */
+    top:0;
+    left:0;
+    width:20px; 
+    height:20px;
+    background-color: #ddd;
+    border-radius: 50%;
+    transition: .3s background-color; /* slight transition */
+  }
+  /* the check icon */
+  label span:after {
+    content: "";
+    position: absolute;
+    display: none;
+    
+    /* middle */
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    background-color:#fff;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+  }
+  label:hover span {
+    background-color: #ccc;
+  }
+
+  .label input:checked ~ span {
+    background-color: #2f3138;
+  }
+  .label input:checked ~ span:after {
+    display:block;
+  }
+ 
+
+ img.register-img{
+    width: 40%;
+    height: auto;
+  }
+
+  button{
+    width: 10rem;
+    background-color: var(--secondary);
+    color: #f2f2f2;
+    padding: 0.8em;
+    border: none;
+    cursor: pointer;
+  }
+
+  button:hover{
+    background-color: #2f3138;
+}
+
+  .scale-up-center{
+    animation: scale-up-center 0.8s;
+  } 
+  @keyframes scale-up-center{
+     0%{transform: scale(.5);}
+     100%{transform: scale(1);}
+  }

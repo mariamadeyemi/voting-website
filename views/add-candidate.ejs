@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/admin_login.css">
+    <link rel="stylesheet" href="public/bootstrap/css/bootstrap.css">
+    <link href="../public/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../public/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../public/font-awesome/css/font-awesome.css">
+   
+</head>
+<body>
+    <div class="container">
+        <h2 class="center mt-5">Add a candidate</h2>
+        <hr>
+        
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="">Surname</label>
+                <input type="text" name="surname" id="surname" class="form-control">                
+            </div>
+            <div class="form-group">
+                <label for="">First name</label>
+                <input type="text" name="first_name" id="first_name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Other name</label>
+                <input type="text" name="other_name" id="other_name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Date of birth</label>
+                <input type="date" name="date_of_birth" id="date_of_birth" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Gender</label><br>
+                <!-- <select name="gender" class="form-control">
+                    <option value="">Select Your gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select> -->
+                <div class="form-check-inline">                
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="gender" value="Male">Male
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="gender" value="Female">Female
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="">Phone</label>
+                <input type="text" name="phone_number" id="phone_number" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Email</label>
+                <input type="email" name="email_address" id="email" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Address</label>
+                <textarea name="address" id="" cols="30" rows="5" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="">State of Origin</label>
+                <select id="country-state" name="state_of_origin">
+                    <option value="ABIA">Abia State</option>
+                    <option value="ADAMAWA">Adamawa State</option>
+                    <option value="AKWA IBOM">Akwa Ibom State</option>
+                    <option value="Anambra">Anambra State</option>
+                    <option value="Bauchi">Bauchi State</option>
+                    <option value="Bayelsa">Bayelsa State</option>
+                    <option value="Benue">Benue State</option>
+                    <option value="Borno">Borno State</option>
+                    <option value="Cross River">Cross River State</option>
+                    <option value="Delta">Delta State</option>
+                    <option value="Ebonyi">Ebonyi State</option>
+                    <option value="Edo State">Edo State</option>
+                    <option value="Ekiti">Ekiti State</option>
+                    <option value="Enugu">Enugu State</option>
+                    <option value="FCT">Federal Capital Territory</option>
+                    <option value="Gombe">Gombe State</option>
+                    <option value="Imo">Imo State</option>
+                    <option value="Jigawa">Jigawa State</option>
+                    <option value="Kaduna">Kaduna State</option>
+                    <option value="Kano">Kano State</option>
+                    <option value="Katsina">Katsina State</option>
+                    <option value="Kebbi">Kebbi State</option>
+                    <option value="Kogi">Kogi State</option>
+                    <option value="Kwara">Kwara State</option>
+                    <option value="Lagos">Lagos</option>
+                    <option value="Nasarawa">Nasarawa State</option>
+                    <option value="Niger">Niger State</option>
+                    <option value="Ogun">Ogun State</option>
+                    <option value="Ondo">Ondo State</option>
+                    <option value="Osun">Osun State</option>
+                    <option value="Oyo">Oyo State</option>
+                    <option value="Plateau">Plateau State</option>
+                    <option value="Sokoto">Sokoto State</option>
+                    <option value="Taraba">Taraba State</option>
+                    <option value="Yobe">Yobe State</option>
+                    <option value="Zamfara">Zamfara State</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="">Party</label>
+                <select name="party_id" class="form-control">
+                    <option value="">Select</option>
+                    <% for (party of parties){ %>
+                    <option value="<%-party.id%>"><%-party.name%></option>
+                    <% } %>
+                    <!-- <option value="1">Select</option>
+                    <option value="2">Labour Party</option>
+                    <option value="3">Action Alliance(AA)</option>
+                    <option value="4">Boot Party</option>
+                    <option value="5">Action Peoples Party(APP)</option>
+                    <option value="6">Social Democratic Party(SDP)</option> -->
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Election</label><br>
+                <select name="election_id" class="form-control">
+                    <option value="">Select</option>
+                    <% for (election of elections){ %>
+                    <option value="<%-election.id%>"><%-election.name%></option>
+                    <% } %>
+                </select>
+               
+            </div>
+            
+
+            <div class="form-group">
+                <label for="">Manifesto</label>
+                <textarea name="manifesto" id="manifesto" cols="30" rows="5" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="">Photo</label>
+                <input type="file" accept="image/*" name="photo" id="photo" class="form-control">
+            </div>
+
+            <button class="btn btn-primary btn-sm">Submit</button>
+        </form>
+    </div>
+    
+    
+    <script src="../public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="public/bootstrap/js/jquery.js"></script>
+    <script src="public/bootstrap/js/popper.min.js"></script>
+    <script src="public/bootstrap/js/boostrap.js"></script>
+</body>
+</html>

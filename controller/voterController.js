@@ -29,4 +29,4 @@ let addVoter = async(req, res)=>{
   }
   }
 
-  module.exports = {voterForm, addVoter}
+module.exports = {voterForm, addVoter}

@@ -9,12 +9,13 @@ const { candidateForm, addCandidate } = require('./controller/candidateControlle
 const { partyForm, addParty, getParties, getParty } = require('./controller/partyController');
 const { electionForm, addElection } = require('./controller/electionController');
 const partyValidators = require('./validators/partyValidator');
-
+const flash = require('./helpers/req-flash');
+const { adminForm, adminLogin, adminLogout } = require('./controller/adminController');
 app.use(express.urlencoded({ extended: true }))
 app.use("/public", express.static('public'));
 app.use(fileUpload({ useTempFiles: true, tempFileDir: '/tmp' }))
 app.use(express.static('uploads'))
-var sess = {
+const sess = {
   secret: 'keyboard cat',
   resave: true,
   saveUninitialized: true,
@@ -27,10 +28,14 @@ if (app.get('env') === 'production') {
 }
 
 app.use(session(sess))
+app.use(flash);
 app.use((req, res, next)=>{
   res.locals.formErrors = req.session?.formErrors
   delete req.session.formErrors;
   res.locals.formBody = req.session?.formBody
+  res.locals.flash = req.session.flash;
+  delete req.session.flash;
+  res.locals.user_id = req.session.user_id
   next()
 })
 
@@ -38,11 +43,15 @@ app.use((req, res, next)=>{
 app.set('view engine', 'ejs');
 
 app.get("/", getParties)
-app.get("/dashboard", (req, res)=>{
+app.get("/dashboard", (req, res
+  )=>{
   res.render("dashboard");
 })
 app.get("/admin-dashboard", (req, res)=>{
   res.render("admin-dashboard");
+})
+app.get("/user-login", (req, res)=>{
+  res.render("user-login");
 })
 
 app.get("/register", voterForm)
@@ -54,10 +63,11 @@ app.post("/add-party", partyValidators, addParty)
 app.get("/party/:id", getParty)
 app.get("/add-election", electionForm)
 app.post("/add-election", addElection)
+app.get("/admin-login", adminForm)
+app.post("/admin-login", adminLogin)
+app.get("/admin-logout", adminLogout)
 
-app.get("/admin-login", (req, res)=>{
-  res.render("admin_login");
-})
+
 app.get("/profile", (req, res)=>{
   res.render("users-profile");
 })

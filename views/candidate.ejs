@@ -4,9 +4,7 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta charset="UTF-8">
-   <title>EJS Is Fun</title>
-   
+   <meta charset="UTF-8">   
    <!-- CSS (load bootstrap from a CDN) -->
    <link href="bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
    <script src="bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
@@ -25,17 +23,15 @@
          <div class="card-body">
            <div class="row">
                <div class="col-sm-6">
-                   <img src="../public/images/candidate1.jpg" width="200px" height="200px"><br>
-                   <p>Name: Muhammadu Buhari</p>
-                   <p>Age: 79 years</p>
-                   <p>Education: US Army War College</p>
+                   <img src="/<%-candidate.photo%>" width="200px" height="200px"><br>
+                   <p><%-candidate%></p>
+                   <p><%-candidate.date_of_birth%></p>
+                   <p><%-candidate.state_of_origin%></p>
                </div>
                <div class="col-sm-6">
-                   <p>"The “ACTION ALLIANCE” is a commitment of purposeful administration
-                       and eldership determined to fulfill the desired height and get this country
-                       out of our present socioeconomic and political problems."
+                   <p><%-candidate.manifesto%>
                    </p>
-                   <ul>
+                   <!-- <ul>
                        <li style="list-style-type: none; font-weight: bold; margin-left: -20px;">Goals</li>
                        <li>To have a free and fair election.</li>
                        <li>To have a fast secured and stress free election.</li>
@@ -48,7 +44,7 @@
                     Buhari is a retired Nigerian Army major general 
                     who served as the country's military head of state 
                     from 31 December 1983 to 27 August 1985, after taking power in a military coup d'état."
-                   </p>
+                   </p> -->
                </div>
              </div>
          </div>

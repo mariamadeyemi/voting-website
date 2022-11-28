@@ -236,16 +236,16 @@
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="/register">
+        <a class="nav-link collapsed" href="/vote">
           <i class="bi bi-card-list"></i>
-          <span>Register</span>
+          <span>Vote</span>
         </a>
       </li><!-- End Register Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="/logout">
           <i class="bi bi-box-arrow-in-right"></i>
-          <span>Login</span>
+          <span>Logout</span>
         </a>
       </li><!-- End Login Page Nav -->
 
@@ -480,48 +480,24 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Election Status <span>| Today</span></h5>
+                  <h5 class="card-title">Presidential Election <span>| ongoing</span></h5>
 
                   <table class="table table-borderless datatable">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Candidates</th>
-                        <th scope="col">Review</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">Presidential Candidates</th>
+                        <th scope="col">Party</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row"><a href="#">#2457</a></th>
-                        <td>Brandon Jacob</td>
-                        <td><a href="#" class="text-primary">Primary election done</a></td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2147</a></th>
-                        <td>Bridie Kessler</td>
-                        <td><a href="#" class="text-primary">Primary election result not available</a></td>
-                        <td><span class="badge bg-warning">Pending</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2049</a></th>
-                        <td>Ashleigh Langosh</td>
-                        <td><a href="#" class="text-primary">Primary election done</a></td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2644</a></th>
-                        <td>Angus Grady</td>
-                        <td><a href="#" class="text-primar">Primary election result rejected</a>
-                        <td><span class="badge bg-danger">Rejected</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2644</a></th>
-                        <td>Raheem Lehner</td>
-                        <td><a href="#" class="text-primary">Primary election done </a></td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
+                      <%for(const candidate of candidates){ %>
+                     <tr>
+                        <td><%-candidate%></td>
+                        <td><a href="#" class="text-primary"><%-candidate.state_of_origin %></a></td>
+                        <!-- <td><span class="badge bg-success">Approved</span></td> -->
+                        
+                      </tr> 
+                      <% }%>       
                     </tbody>
                   </table>
 

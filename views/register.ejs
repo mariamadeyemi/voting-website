@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../public/register.css">
+    <link href="../public/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <title>Register</title>
 </head>
 <body>
@@ -37,14 +38,23 @@
 
             <label>gender</label> <br>
             <label class="label">Male
-                <input type="radio" name="gender"/>
+                <input type="radio" name="gender" value="Male"/>
                 <span></span>
               </label>
               <label class="label">Female
-                <input type="radio" name="gender" />
+                <input type="radio" name="gender" value="Female"/>
                 <span></span>
               </label>
-             
+             <!-- <div class="form-check-inline">                
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="gender" value="Male">Male
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="gender" value="Female">Female
+                    </label>
+                </div> -->
                         
            
     
@@ -66,8 +76,27 @@
         </form>
     </div>
 
-    
+    <% for( let formName in locals.formErrors || {}) { %>
+        <script>
+            var elem = document.querySelector('[name=<%- formName%>]')
+            elem.classList.add('is-invalid');
+            elem.parentNode.insertAdjacentHTML('beforeend', '<span class="text-sm text-danger font-italic"><%- locals.formErrors[formName].msg %></span>')
+        </script>
+      <% } %>
+      <% for( let formName in locals.formBody || {}) { %>
+        <script>
+            var elem = document.querySelector('[name=<%- formName%>]')
+            if (elem.type == 'radio' || elem.type == 'checkbox') {
+              document.querySelector('[name=<%- formName%>][value=<%- locals.formBody[formName] %>]').checked = true
+            }else if(elem.nodeName.toLowerCase() == "select" ){
+              elem.querySelector('[value=<%- locals.formBody[formName] %>]').selected = true
+            }else
+            elem.value = "<%- locals.formBody[formName] %>"
+        </script>
+      <% } %>
  
     <%- include('partials/footer'); %>
+
+    <script src="../public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

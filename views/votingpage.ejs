@@ -19,108 +19,27 @@
 
     <div class="container">
       <div class="row pt-4">
+        <%for(const party of parties){ %>
           <div class="col-lg-4 col-sm-6 py-2">
   
               <!-- card -->
               <div class="card h-100">
                   <div class="card-img-top">
-                      <img src="../public/images/LP.jpg" class="img-fluid mx-auto d-block" alt="card image 1">
+                      <img src="/<%- party.logo %>" class="img-fluid mx-auto d-block" alt="card image 1">
                   </div>
                   <div class="card-block d-flex flex-column">
-                      <p class="text-center">Labour Party (LP)</p>
+                      <p class="text-center"><%- party.name %></p>
                       <a href="#" class="btn">Vote</a>
-                      <a href="#" class="btn">Detail</a>
+                      <a href="/candidate/<%- party.id %>" class="btn">Detail</a>
                   </div>
               </div>
               <!-- card -->
   
           </div>
-          <div class="col-lg-4 col-sm-6 py-2">
+          <% }%>
   
-              <!-- card -->
-              <div class="card h-100">
-                  <div class="card-img-top">
-                      <img src="../public/images/AA.jpg" class="img-fluid mx-auto d-block" alt="card image 3">
-                  </div>
-                  <div class="card-block d-flex flex-column">
-                      <p class="text-center">Action Alliance (AA)</p>
-                      <a href="#" class="btn">Vote</a>
-                      <a href="#" class="btn">Detail</a>
-                  </div>
-              </div>
-              <!-- card -->
-  
-          </div>
-          <div class="col-lg-4 col-sm-6 mx-auto py-2">
-  
-              <!-- card -->
-              <div class="card h-100">
-                  <div class="card-img-top">
-                      <img src="../public/images/ADC.jpg" class="img-fluid mx-auto d-block" alt="card image 3">
-                  </div>
-                  <div class="card-block d-flex flex-column">
-                      <p class="text-center">African Democratic Congress(ADC)</p>
-                      <a href="#" class="btn">Vote</a>
-                      <a href="#" class="btn">Detail</a>
-                  </div>
-              </div>
-              <!-- card -->
-  
-          </div>
-
-          <div class="col-lg-4 col-sm-6 mx-auto py-2">
-  
-            <!-- card -->
-            <div class="card h-100">
-                <div class="card-img-top">
-                    <img src="../public/images/BootParty.jpg" class="img-fluid mx-auto d-block" alt="card image 3">
-                </div>
-                <div class="card-block d-flex flex-column">
-                    <p class="text-center">Boot Party</p>
-                    <a href="#" class="btn">Vote</a>
-                    <a href="#" class="btn">Detail</a>
-                </div>
-            </div>
-            <!-- card -->
-
-        </div>
-
-        <div class="col-lg-4 col-sm-6 mx-auto py-2">
-  
-          <!-- card -->
-          <div class="card h-100">
-              <div class="card-img-top">
-                  <img src="../public/images/APP.png" class="img-fluid mx-auto d-block" alt="card image 3">
-              </div>
-              <div class="card-block d-flex flex-column">
-                  <p class="text-center">Action People's Party(APP)</p>
-                  <a href="#" class="btn">Vote</a>
-                  <a href="#" class="btn">Detail</a>
-              </div>
-          </div>
-          <!-- card -->
-
-      </div>
-
-      <div class="col-lg-4 col-sm-6 mx-auto py-2">
-  
-        <!-- card -->
-        <div class="card h-100">
-            <div class="card-img-top">
-                <img src="../public/images/SDP.png" class="img-fluid mx-auto d-block" alt="card image 3">
-            </div>
-            <div class="card-block d-flex flex-column">
-                <p class="text-center">Social Democratic Party (SDP)</p>
-                <a href="#" class="btn">Vote</a>
-                <a href="#" class="btn">Detail</a>
-            </div>
-        </div>
-        <!-- card -->
-
-    </div>
-      </div>
   </div>
-  
+   
   
           
  

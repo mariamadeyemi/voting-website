@@ -1,8 +1,9 @@
+//jshint esversion:6
 const express = require('express');
 const app = express();
 const fileUpload = require('express-fileUpload');
 const Admin = require("./models/Admin");
-const { voterForm, addVoter, voterLogin } = require('./controller/voterController');
+const { voterForm, addVoter, voterLogin, viewDashboard, logout } = require('./controller/voterController');
 const session = require('express-session');
 const bcrypt = require('bcrypt');
 const { candidateForm, addCandidate } = require('./controller/candidateController');
@@ -11,6 +12,9 @@ const { electionForm, addElection } = require('./controller/electionController')
 const partyValidators = require('./validators/partyValidator');
 const flash = require('./helpers/req-flash');
 const { adminForm, adminLogin, adminLogout } = require('./controller/adminController');
+const registerValidators = require('./validators/registerValidator');
+const { voteForm, getCandidate } = require('./controller/voteController');
+const authenticate = require('./middlewares/authenticate');
 app.use(express.urlencoded({ extended: true }))
 app.use("/public", express.static('public'));
 app.use(fileUpload({ useTempFiles: true, tempFileDir: '/tmp' }))
@@ -39,14 +43,13 @@ app.use((req, res, next)=>{
   next()
 })
 
+
+
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
 app.get("/", getParties)
-app.get("/dashboard", (req, res
-  )=>{
-  res.render("dashboard");
-})
+app.get("/dashboard", authenticate, viewDashboard)
 app.get("/admin-dashboard", (req, res)=>{
   res.render("admin-dashboard");
 })
@@ -56,7 +59,7 @@ app.get("/user-login", (req, res)=>{
 app.post("/user-login", voterLogin)
 
 app.get("/register", voterForm)
-app.post("/register", addVoter)
+app.post("/register", registerValidators, addVoter)
 app.get("/add-candidate", candidateForm)
 app.post("/add-candidate", addCandidate)
 app.get("/add-party", partyForm)
@@ -67,19 +70,17 @@ app.post("/add-election", addElection)
 app.get("/admin-login", adminForm)
 app.post("/admin-login", adminLogin)
 app.get("/admin-logout", adminLogout)
-
-
 app.get("/profile", (req, res)=>{
   res.render("users-profile");
 })
-app.get("/vote", (req, res)=>{
-  res.render("votingpage");
-})
+app.get("/vote", authenticate, voteForm)
 app.get("/candidate", (req, res)=>{
   res.render("candidate");
 })
 
+app.get("/candidate/:id", getCandidate)
 
+app.get("/logout", logout)
 
 
 

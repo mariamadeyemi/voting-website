@@ -1,26 +1,30 @@
-const Model = require("./Model");
+const User = require("./User");
+const connection = require('./connection');
 
-class Candidate extends Model {
 
-    async getElectionId(){
-        let result = [] 
-        let sql = `SELECT id FROM elections WHERE name = ?`
-        let [rows] = await connection.execute(sql, [this.name])
-        for (const row of rows) {
-            result.push(new this(row));
+class Candidate extends User {
+
+   
+
+   static async findCandidate(id){
+        let sql = `SELECT * FROM candidates WHERE election_id = ? AND party_id = ?`
+        let [rows] = await connection.execute(sql, [1, id]);
+        if(rows.length){
+            let row = rows[0];
+            return new this(row)
         }
-        return result
-    }
+        return null;
+ }
 
-    async getPartyId(){
-        let result = [] 
-        let sql = `SELECT id FROM parties WHERE name = ?`
-        let [rows] = await connection.execute(sql, [this.name])
-        for (const row of rows) {
-            result.push(new this(row));
-        }
-        return result
-    }
+ static async findCandidates(){
+    let result = [];
+    let sql = `SELECT * FROM candidates WHERE election_id = ?`
+    let [rows] = await connection.execute(sql, [1]);
+       for(const row of rows){
+           result.push(new this(row)) 
+       }
+       return result
+}
 
 }
 

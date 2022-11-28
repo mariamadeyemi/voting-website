@@ -1,8 +1,8 @@
-const Model = require("./Model");
+const User = require("./User");
 const connection = require('./connection');
 
 
-class Voter extends Model {
+class Voter extends User {
     async findOne(){
         let sql = `SELECT * FROM voters WHERE email_address = ?`
         let [rows] = await connection.execute(sql, [this.email]);

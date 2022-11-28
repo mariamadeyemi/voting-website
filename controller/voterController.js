@@ -1,6 +1,18 @@
 const Voter = require("../models/Voter");
 const bcrypt = require ("bcrypt");
 const saltRounds = 10;
+const Vote = require("../models/Vote");
+const Candidate = require("../models/Candidate");
+
+let viewDashboard = async(req, res)=>{
+    try {
+       let candidates = await Candidate.findCandidates();
+       res.render("dashboard", {candidates});
+    } catch (error) {
+        res.send(error.message)
+    }
+  
+  }
 
 let voterForm = (req, res)=>{
     res.render("register");
@@ -34,21 +46,21 @@ let addVoter = async(req, res)=>{
             //     console.log(err);
             // }
 })
-      res.redirect('/user-login')
+      res.redirect('/dashboard')
   } catch (error) {
       res.send(error.message)
   }
   }
 
-  const voterLogin = async (req, res) => {
-    let { email } = req.body
+  let voterLogin = async (req, res) => {
+    let { email, password } = req.body
     let voter = new Voter(req.body)
     let result = await voter.findOne(email);
     //  if (result.length > 0)
     //     voter = result[0]
-        console.log(result);
+        // console.log(result);
    
-    if (result) {
+    if (result && await bcrypt.compare(password, result.password)) {
         req.session.user_id = result.id
         res.redirect('/dashboard')
     } else {
@@ -57,10 +69,10 @@ let addVoter = async(req, res)=>{
     }
 }
 
-const voterLogout = (req, res) => {
+const logout = (req, res) => {
     req.flash('Success', "Bye")
     delete req.session.user_id
     res.redirect('/')
 }
 
-module.exports = {voterForm, addVoter, voterLogin, voterLogout}
+module.exports = {voterForm, addVoter, voterLogin, logout, viewDashboard}

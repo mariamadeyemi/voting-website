@@ -27,6 +27,8 @@ class Model {
        this.id = result.insertId
    }
 
+   
+
    static async fetch(){
        let result = [];
        let sql = `SELECT * FROM ${this.tablename}`

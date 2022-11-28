@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const fileUpload = require('express-fileUpload');
 const Admin = require("./models/Admin");
-const { voterForm, addVoter } = require('./controller/voterController');
+const { voterForm, addVoter, voterLogin } = require('./controller/voterController');
 const session = require('express-session');
 const bcrypt = require('bcrypt');
 const { candidateForm, addCandidate } = require('./controller/candidateController');
@@ -51,8 +51,9 @@ app.get("/admin-dashboard", (req, res)=>{
   res.render("admin-dashboard");
 })
 app.get("/user-login", (req, res)=>{
-  res.render("user-login");
+  res.render("user_login");
 })
+app.post("/user-login", voterLogin)
 
 app.get("/register", voterForm)
 app.post("/register", addVoter)

@@ -19,5 +19,19 @@ const getCandidate = async(req, res)=>{
 }
 }
 
+const addVote = async(req, res)=>{
+    try {
+      let vote = new Vote({
+        election_id: 1,
+        voter_id: req.session.user_id,
+        vote: req.body.vote
+      });
+      await vote.save()
+      res.redirect("/confirmation")
+    } catch (error) {
+      res.send(error.message)
+    }
+}
 
-module.exports = { voteForm, getCandidate }
+
+module.exports = { voteForm, getCandidate, addVote }

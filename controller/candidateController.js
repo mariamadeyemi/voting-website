@@ -36,4 +36,6 @@ let addCandidate = async(req, res)=>{
   }
   }  
 
+  
+
 module.exports = { candidateForm, addCandidate }

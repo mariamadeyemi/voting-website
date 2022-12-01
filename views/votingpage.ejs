@@ -18,26 +18,29 @@
 
 
     <div class="container">
-      <div class="row pt-4">
-        <%for(const party of parties){ %>
-          <div class="col-lg-4 col-sm-6 py-2">
-  
-              <!-- card -->
-              <div class="card h-100">
-                  <div class="card-img-top">
-                      <img src="/<%- party.logo %>" class="img-fluid mx-auto d-block" alt="card image 1">
-                  </div>
-                  <div class="card-block d-flex flex-column">
-                      <p class="text-center"><%- party.name %></p>
-                      <a href="#" class="btn">Vote</a>
-                      <a href="/candidate/<%- party.id %>" class="btn">Detail</a>
-                  </div>
-              </div>
-              <!-- card -->
-  
-          </div>
-          <% }%>
-  
+        <form action="/vote" method="post">
+            <div class="row pt-4">
+                <%for(const party of parties){ %>
+                 <div class="col-lg-4 col-sm-6 py-2">
+         
+                     <!-- card -->
+                     <div class="card h-100">
+                         <div class="card-img-top">
+                             <img src="/<%- party.logo %>" class="img-fluid mx-auto d-block" alt="card image 1">
+                         </div>
+                         <div class="card-block d-flex flex-column">
+                             <p class="text-center"><%- party.name %></p>
+                             <button type="submit" class="btn" name="vote" value="<%- party.id %>">Vote</button>
+                             <a href="/candidate/<%- party.id %>" class="btn">Detail</a>
+                         </div>
+                     </div>
+                     <!-- card -->
+                   
+                 </div>
+                 <% }%>
+             </div>
+        </form>
+      
   </div>
    
   

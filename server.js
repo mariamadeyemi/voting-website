@@ -13,7 +13,7 @@ const partyValidators = require('./validators/partyValidator');
 const flash = require('./helpers/req-flash');
 const { adminForm, adminLogin, adminLogout } = require('./controller/adminController');
 const registerValidators = require('./validators/registerValidator');
-const { voteForm, getCandidate } = require('./controller/voteController');
+const { voteForm, getCandidate, addVote } = require('./controller/voteController');
 const authenticate = require('./middlewares/authenticate');
 app.use(express.urlencoded({ extended: true }))
 app.use("/public", express.static('public'));
@@ -74,6 +74,7 @@ app.get("/profile", (req, res)=>{
   res.render("users-profile");
 })
 app.get("/vote", authenticate, voteForm)
+app.post("/vote", addVote)
 app.get("/candidate", (req, res)=>{
   res.render("candidate");
 })
@@ -81,6 +82,11 @@ app.get("/candidate", (req, res)=>{
 app.get("/candidate/:id", getCandidate)
 
 app.get("/logout", logout)
+
+app.get("/confirmation", (req, res)=>{
+  res.render("confirmation");
+})
+
 
 
 

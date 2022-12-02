@@ -1,6 +1,6 @@
 <% for( let formName in locals.formErrors || {}) { %>
     <script>
-        var elem = document.querySelector('[name=<%- formName%>]')
+        var elem = document.querySelector('[name=<%-formName%>]')
         elem.classList.add('is-invalid');
         elem.parentNode.insertAdjacentHTML('beforeend', '<span class="text-sm text-danger font-italic"><%- locals.formErrors[formName].msg %></span>')
     </script>

@@ -1,0 +1,18 @@
+<% for( let formName in locals.formErrors || {}) { %>
+    <script>
+        var elem = document.querySelector('[name=<%- formName%>]')
+        elem.classList.add('is-invalid');
+        elem.parentNode.insertAdjacentHTML('beforeend', '<span class="text-sm text-danger font-italic"><%- locals.formErrors[formName].msg %></span>')
+    </script>
+  <% } %>
+  <% for( let formName in locals.formBody || {}) { %>
+    <script>
+        var elem = document.querySelector('[name=<%- formName%>]')
+        if (elem.type == 'radio' || elem.type == 'checkbox') {
+          document.querySelector('[name=<%- formName%>][value=<%- locals.formBody[formName] %>]').checked = true
+        }else if(elem.nodeName.toLowerCase() == "select" ){
+          elem.querySelector('[value=<%- locals.formBody[formName] %>]').selected = true
+        }else
+        elem.value = "<%- locals.formBody[formName] %>"
+    </script>
+  <% } %>

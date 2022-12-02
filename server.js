@@ -11,10 +11,11 @@ const { partyForm, addParty, getParties, getParty } = require('./controller/part
 const { electionForm, addElection } = require('./controller/electionController');
 const partyValidators = require('./validators/partyValidator');
 const flash = require('./helpers/req-flash');
-const { adminForm, adminLogin, adminLogout } = require('./controller/adminController');
+const { adminForm, adminLogin, adminLogout, addAdmin } = require('./controller/adminController');
 const registerValidators = require('./validators/registerValidator');
 const { voteForm, getCandidate, addVote } = require('./controller/voteController');
 const authenticate = require('./middlewares/authenticate');
+const adminauth = require('./middlewares/adminauth');
 app.use(express.urlencoded({ extended: true }))
 app.use("/public", express.static('public'));
 app.use(fileUpload({ useTempFiles: true, tempFileDir: '/tmp' }))
@@ -50,9 +51,20 @@ app.set('view engine', 'ejs');
 
 app.get("/", getParties)
 app.get("/dashboard", authenticate, viewDashboard)
-app.get("/admin-dashboard", (req, res)=>{
+app.get("/admin-dashboard", adminauth, (req, res)=>{
   res.render("admin-dashboard");
 })
+
+app.get("/add-admin", (req, res)=>{
+  res.render("add-admin");
+})
+
+app.get("/about", (req, res)=>{
+  res.render("about");
+})
+
+app.post("/add-admin", addAdmin)
+
 app.get("/user-login", (req, res)=>{
   res.render("user_login");
 })

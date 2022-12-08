@@ -34,4 +34,6 @@ const addVote = async(req, res)=>{
 }
 
 
+
+
 module.exports = { voteForm, getCandidate, addVote }

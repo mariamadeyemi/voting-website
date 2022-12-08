@@ -3,6 +3,7 @@ const bcrypt = require ("bcrypt");
 const saltRounds = 10;
 const Vote = require("../models/Vote");
 const Candidate = require("../models/Candidate");
+const Party = require("../models/Party");
 
 let voterLogin = async (req, res) => {
     let { email, password } = req.body
@@ -20,10 +21,22 @@ let voterLogin = async (req, res) => {
 
 let viewDashboard = async(req, res)=>{
     try {
+    
+        
         if(req.session.user_id){
+            let parties = await Party.fetch();
+        for(const party of parties){
+            let id = party.id;
+            let getVoteCount = async()=>{
+                let countVote = await Vote.countVotes(id)
+            console.log(countVote);
+            }
+            getVoteCount();
+        }
           let voter = await Voter.fetchById(req.session.user_id);
           let candidates = await Candidate.findCandidates();
        res.render("dashboard", {candidates, voter});
+       
         }
        
     } catch (error) {

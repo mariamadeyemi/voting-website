@@ -33,7 +33,33 @@ const addVote = async(req, res)=>{
     }
 }
 
+const voteResult = async(req, res)=>{
+  try {
+    let vote = new Vote()
+    let votes = await vote.totalVotes();
+        
+    // let parties = await Party.fetch();
+
+  //  await Vote.countVotes(id)
+            
+   
+  // getVoteCount(); 
+  console.log(votes);
+    res.render("result")
+  } catch (error) {
+   res.send(error.message) 
+  }
+}
+
+const apiVote = async(req, res)=>{
+  try {
+    let countVote = await Vote.countVotes(req.params.id)
+    res.send(countVote) 
+  } catch (error) {
+    res.json(0)
+  }
+  
+}
 
 
-
-module.exports = { voteForm, getCandidate, addVote }
+module.exports = { voteForm, getCandidate, addVote, voteResult, apiVote }

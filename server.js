@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const fileUpload = require('express-fileUpload');
 const Admin = require("./models/Admin");
-const { voterForm, addVoter, voterLogin, viewDashboard, logout } = require('./controller/voterController');
+const { voterForm, addVoter, voterLogin, viewDashboard, logout, verify } = require('./controller/voterController');
 const session = require('express-session');
 const bcrypt = require('bcrypt');
 const { candidateForm, addCandidate } = require('./controller/candidateController');
@@ -13,7 +13,7 @@ const partyValidators = require('./validators/partyValidator');
 const flash = require('./helpers/req-flash');
 const { adminForm, adminLogin, adminLogout, addAdmin } = require('./controller/adminController');
 const registerValidators = require('./validators/registerValidator');
-const { voteForm, getCandidate, addVote } = require('./controller/voteController');
+const { voteForm, getCandidate, addVote, voteResult, apiVote } = require('./controller/voteController');
 const authenticate = require('./middlewares/authenticate');
 const adminauth = require('./middlewares/adminauth');
 app.use(express.urlencoded({ extended: true }))
@@ -69,7 +69,7 @@ app.get("/user-login", (req, res)=>{
   res.render("user_login");
 })
 app.post("/user-login", voterLogin)
-
+app.get("/verify_email", verify)
 app.get("/register", voterForm)
 app.post("/register", registerValidators, addVoter)
 app.get("/add-candidate", adminauth, candidateForm)
@@ -98,6 +98,10 @@ app.get("/logout", logout)
 app.get("/confirmation", (req, res)=>{
   res.render("confirmation");
 })
+
+app.get("/result", voteResult)
+
+app.get("/api/:id/result", apiVote)
 
 
 

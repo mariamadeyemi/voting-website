@@ -52,7 +52,12 @@ let voterForm = (req, res)=>{
 let addVoter = async(req, res)=>{
     try {
         let token = randtoken.generate(20);
-     let voter = new Voter(req.body, {verify: "N", token:token});
+        let body = req.body
+        // let newData = {
+        //     verify: "N",
+        //     token:token
+        // }
+     let voter = new Voter({...body, verify: "N", token:token});
         bcrypt.hash(req.body.password, saltRounds, async(err, hash)=>{
             voter.password = hash;
             if (req.files?.photo) {
@@ -84,16 +89,17 @@ let addVoter = async(req, res)=>{
 
 let verify = async(req, res)=>{
     try {
-        let voter = new Voter();
-        let result = await voter.findToken(req.query.token);
-        let verify = result.verify
-if(result){
-  result.setProp(verify="Y")
-}
+        let token = req.query.token
+        let result = await Voter.findToken(token);
+        let email = result.email_address
+        // console.log(result)
 
-await result.update();
+        const [rows] = await connection.execute('UPDATE voters SET `verify` = ? WHERE `email_address` = ?', ['Y', email]);
+        console.log(rows);
+
+res.render("verify-page")
+// console.log(req.query);
  
-res.render("verify-page"); 
 
     } catch (error) {
       res.send(error.message)  

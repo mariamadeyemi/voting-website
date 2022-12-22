@@ -14,12 +14,12 @@ class Voter extends User {
 
 }
 
-async findToken(){
+static async findToken(token){
     let sql = `SELECT * FROM voters WHERE token = ?`
-    let [rows] = await connection.execute(sql, [this.token]);
+    let [rows] = await connection.execute(sql, [token]);
     if(rows.length){
         let row = rows[0];
-        return new this.constructor(row)
+        return new this(row)
     }
     return null;
 

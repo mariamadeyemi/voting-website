@@ -1,6 +1,7 @@
 const Vote = require("../models/Vote");
 const Party = require("../models/Party");
 const Candidate = require("../models/Candidate");
+const connection = require('../models/connection');
 
 const voteForm = async(req, res)=>{
     let parties = await Party.fetch();
@@ -37,29 +38,25 @@ const voteResult = async(req, res)=>{
   try {
     let vote = new Vote()
     let votes = await vote.totalVotes();
-        
-    // let parties = await Party.fetch();
-
-  //  await Vote.countVotes(id)
-            
-   
-  // getVoteCount(); 
-  console.log(votes);
-    res.render("result")
+        let sql = 'SELECT parties.name, COUNT(votes.id) AS count FROM votes JOIN parties on votes.vote = parties.id GROUP BY vote'
+        const [result] = await connection.execute(sql)
+    res.render("result", {votes, result})
   } catch (error) {
    res.send(error.message) 
   }
 }
 
-const apiVote = async(req, res)=>{
-  try {
-    let countVote = await Vote.countVotes(req.params.id)
-    res.send(countVote) 
-  } catch (error) {
-    res.json(0)
-  }
+
+
+// const apiVote = async(req, res)=>{
+//   try {
+//     let countVote = await Vote.countVotes(req.params.id)
+//     res.send(countVote) 
+//   } catch (error) {
+//     res.json(0)
+//   }
   
-}
+// }
 
 
-module.exports = { voteForm, getCandidate, addVote, voteResult, apiVote }
+module.exports = { voteForm, getCandidate, addVote, voteResult }

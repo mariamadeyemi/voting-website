@@ -13,21 +13,18 @@
             <th>Party</th>
             <th>Votes</th>
         </tr>
-        <tr>
-            <td>PDP</td>
-            <td>20</td>
-        </tr>
-        <tr>
-            <td>LP</td>
-            <td>20</td>
-        </tr>
-        <tr>
-            <td>SDP</td>
-            <td>20</td>
-        </tr>
+        <%for(const voteCount of result){ %>
+
+            <tr>
+                <td><%-voteCount.name%></td>
+                <td><%-voteCount.count%></td>
+            </tr>
+       <%}%>
+       
+
     </table>
 
-    <p>Total Votes : 120</p>
+    <p>Total Votes : <%-votes.count%></p>
 
 
 

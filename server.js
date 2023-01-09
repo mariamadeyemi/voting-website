@@ -13,7 +13,7 @@ const partyValidators = require('./validators/partyValidator');
 const flash = require('./helpers/req-flash');
 const { adminForm, adminLogin, adminLogout, addAdmin } = require('./controller/adminController');
 const registerValidators = require('./validators/registerValidator');
-const { voteForm, getCandidate, addVote, voteResult, apiVote } = require('./controller/voteController');
+const { voteForm, getCandidate, addVote, voteResult } = require('./controller/voteController');
 const authenticate = require('./middlewares/authenticate');
 const adminauth = require('./middlewares/adminauth');
 app.use(express.urlencoded({ extended: true }))
@@ -101,7 +101,7 @@ app.get("/confirmation", (req, res)=>{
 
 app.get("/result", voteResult)
 
-app.get("/api/:id/result", apiVote)
+// app.get("/api/:id/result", apiVote)
 
 
 

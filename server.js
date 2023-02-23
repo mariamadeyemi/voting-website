@@ -1,17 +1,21 @@
+//jshint esversion:6
 const express = require('express');
 const app = express();
 const fileUpload = require('express-fileUpload');
+const Admin = require("./models/Admin");
+const { voterForm, addVoter, voterLogin, viewDashboard, logout, verify } = require('./controller/voterController');
 const session = require('express-session');
+const bcrypt = require('bcrypt');
+const { candidateForm, addCandidate } = require('./controller/candidateController');
+const { partyForm, addParty, getParties, getParty } = require('./controller/partyController');
+const { electionForm, addElection } = require('./controller/electionController');
+const partyValidators = require('./validators/partyValidator');
 const flash = require('./helpers/req-flash');
-const adminRoute = require("./routes/adminRoute");
-const candidateRoute = require("./routes/candidateRoute");
-const electionRoute = require("./routes/electionRoute");
-const partyRoute = require("./routes/partyRoute");
-const voteRoute = require("./routes/voteRoute");
-const voterRoute = require("./routes/voterRoute");
-
-
-
+const { adminForm, adminLogin, adminLogout, addAdmin } = require('./controller/adminController');
+const registerValidators = require('./validators/registerValidator');
+const { voteForm, getCandidate, addVote, voteResult, apiVote } = require('./controller/voteController');
+const authenticate = require('./middlewares/authenticate');
+const adminauth = require('./middlewares/adminauth');
 app.use(express.urlencoded({ extended: true }))
 app.use("/public", express.static('public'));
 app.use(fileUpload({ useTempFiles: true, tempFileDir: '/tmp' }))
@@ -45,13 +49,60 @@ app.use((req, res, next)=>{
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
+app.get("/", getParties)
+app.get("/dashboard", authenticate, viewDashboard)
+app.get("/admin-dashboard", adminauth, (req, res)=>{
+  res.render("admin-dashboard");
+})
 
-app.use(adminRoute)
-app.use(candidateRoute)
-app.use(electionRoute)
-app.use(partyRoute)
-app.use(voteRoute)
-app.use(voterRoute)
+app.get("/add-admin", (req, res)=>{
+  res.render("add-admin");
+})
+
+app.get("/about", (req, res)=>{
+  res.render("about");
+})
+
+app.post("/add-admin", addAdmin)
+
+app.get("/user-login", (req, res)=>{
+  res.render("user_login");
+})
+app.post("/user-login", voterLogin)
+app.get("/verify_email", verify)
+app.get("/register", voterForm)
+app.post("/register", registerValidators, addVoter)
+app.get("/add-candidate", adminauth, candidateForm)
+app.post("/add-candidate", addCandidate)
+app.get("/add-party", adminauth, partyForm)
+app.post("/add-party", partyValidators, addParty)
+app.get("/party/:id", getParty)
+app.get("/add-election", electionForm)
+app.post("/add-election", addElection)
+app.get("/admin-login", adminForm)
+app.post("/admin-login", adminLogin)
+app.get("/admin-logout", adminLogout)
+app.get("/profile", (req, res)=>{
+  res.render("users-profile");
+})
+app.get("/vote", authenticate, voteForm)
+app.post("/vote", addVote)
+app.get("/candidate", (req, res)=>{
+  res.render("candidate");
+})
+
+app.get("/candidate/:id", getCandidate)
+
+app.get("/logout", logout)
+
+app.get("/confirmation", (req, res)=>{
+  res.render("confirmation");
+})
+
+app.get("/result", voteResult)
+
+app.get("/api/:id/result", apiVote)
+
 
 
 

@@ -13,7 +13,7 @@ const nodemailer = require("nodemailer")
               });
             
                await transporter.sendMail({
-                from: "adeyemijolade@gmail.com", 
+                from: "adeyemijolade@gmail.com", //mahlik.jerick@dropsin.net
                 to: email,
                 subject: "Hello ✔", 
                 html: "<a href= 'http://localhost:5000/verify_email?token="+ id + "'>Login</a>" ///verify_email?

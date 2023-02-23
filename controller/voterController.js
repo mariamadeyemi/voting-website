@@ -8,17 +8,23 @@ const emailVerify = require('../middlewares/emailVerification');
 const connection = require('../models/connection');
 
 let voterLogin = async (req, res) => {
-    let { email, password } = req.body
+    try {
+     let { email, password } = req.body
     let voter = new Voter(req.body)
     let result = await voter.findOne(email);
-    
-    if (result && await bcrypt.compare(password, result.password)) {
+
+    if (result && await bcrypt.compare(password, result.password) && result.verify !== "N") {
         req.session.user_id = result.id
         res.redirect('/dashboard')
-    } else {
+    }else {
         req.flash('Error', "Invalid username or password")
         res.redirect('back')
+    }    
+    } catch (error) {
+     res.sendStatus(404)
+     console.log(error)
     }
+   
 }
 
 let viewDashboard = async(req, res)=>{
@@ -27,6 +33,20 @@ let viewDashboard = async(req, res)=>{
             let voter = await Voter.fetchById(req.session.user_id);
             let candidates = await Candidate.findCandidates();
             res.render("dashboard", {candidates, voter});
+            
+        }
+        
+    } catch (error) {
+        res.send(error.message)
+    }
+    
+}
+
+let viewProfile = async(req, res)=>{
+    try {
+        if(req.session.user_id){
+            let voter = await Voter.fetchById(req.session.user_id);
+            res.render("users-profile", { voter });
             
         }
         
@@ -53,12 +73,13 @@ let addVoter = async(req, res)=>{
     try {
         let token = randtoken.generate(20);
         let body = req.body
-        // let newData = {
-        //     verify: "N",
-        //     token:token
-        // }
-     let voter = new Voter({...body, verify: "N", token:token});
-        bcrypt.hash(req.body.password, saltRounds, async(err, hash)=>{
+    
+        let voter = new Voter({...body, verify: "N", token:token});
+        // let newVoter = new Voter(req.body)
+        // let getVoter = await newVoter.findOne(email)
+        // console.log(getVoter);
+       
+   bcrypt.hash(req.body.password, saltRounds, async(err, hash)=>{
             voter.password = hash;
             if (req.files?.photo) {
                 let photo = req.files.photo
@@ -77,11 +98,12 @@ let addVoter = async(req, res)=>{
 
             } else {
                 await voter.save()
-            }
-            })
-            await emailVerify(req.body.email_address, token)
+             }
+        await emailVerify(req.body.email_address, token)
         req.flash("Success", "Successfully registered, Verify your email to login")
-        res.redirect("/user-login") ///verify_email?email=${req.session.verify_id}
+        res.redirect("/user-login")
+            })          
+
     } catch (error) {
         res.send(error.message)
     }
@@ -95,7 +117,7 @@ let verify = async(req, res)=>{
         // console.log(result)
 
         const [rows] = await connection.execute('UPDATE voters SET `verify` = ? WHERE `email_address` = ?', ['Y', email]);
-        console.log(rows);
+        // console.log(rows);
 
 res.render("verify-page")
 // console.log(req.query);
@@ -117,4 +139,4 @@ const logout = (req, res) => {
 }
 
 
-module.exports = {voterForm, addVoter, voterLogin, logout, viewDashboard, verify}
+module.exports = {voterForm, addVoter, voterLogin, logout, viewDashboard, viewProfile, verify}

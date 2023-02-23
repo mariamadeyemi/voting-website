@@ -117,61 +117,65 @@
           <p>Here are some of our parties candidates</p>
         </div>
 
-        <div class="row">
+      <div class="row">
+
+        <%for(const candidate of row){%>
           <div class="col-lg-4 col-md-6">
             <div class="speaker" data-aos="fade-up" data-aos-delay="100">
-              <img src="../public/assets/img/speakers/1.jpg" alt="Speaker 1" class="img-fluid">
+              <img src="<%-candidate.photo%>" alt="candidate 1" class="img-fluid">
               <div class="details">
-                <h3><a href="speaker-details.html">Adeyemi Afolayan Ethan</a></h3>
+                <h3><%-`${candidate.surname} ${candidate.first_name}`%></h3>
                 <p>Presidential Candidates</p>
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6">
+        <%}%>
+          
+          <!-- <div class="col-lg-4 col-md-6">
             <div class="speaker" data-aos="fade-up" data-aos-delay="200">
-              <img src="../public/assets/img/speakers/2.jpg" alt="Speaker 2" class="img-fluid">
+              <img src="../public/images/candidate03.jpg" alt="candidate 2" class="img-fluid">
               <div class="details">
-                <h3><a href="speaker-details.html">Chukwu Amaka Precious</a></h3>
+                <h3>Chukwu Amaka Precious</h3>
                 <p>Presidential Candidates</p>
               </div>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="speaker" data-aos="fade-up" data-aos-delay="300">
-              <img src="../public/assets/img/speakers/3.jpg" alt="Speaker 3" class="img-fluid">
+              <img src="../public/images/candidate05.jpg" alt="candidate 3" class="img-fluid">
               <div class="details">
-                <h3><a href="speaker-details.html">Ismail Suliaman Saliu</a></h3>
+                <h3>Ismail Suliaman Saliu</h3>
                 <p>Presidential Candidates</p>
               </div>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="speaker" data-aos="fade-up" data-aos-delay="100">
-              <img src="../public/assets/img/speakers/4.jpg" alt="Speaker 4" class="img-fluid">
+              <img src="../public/images/candidate06.jpg" alt="candidate 4" class="img-fluid">
               <div class="details">
-                <h3><a href="speaker-details.html">Chideze Moses ThankGod</a></h3>
+                <h3>Chideze Moses ThankGod</h3>
                 <p>Presidential Candidates</p>
               </div>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="speaker" data-aos="fade-up" data-aos-delay="200">
-              <img src="../public/assets/img/speakers/5.jpg" alt="Speaker 5" class="img-fluid">
+              <img src="../public/images/candidate01.jpg" alt="candidate01" class="img-fluid">
               <div class="details">
-                <h3><a href="speaker-details.html">Aliyu Yusuf Aliyu</a></h3>
+                <h3>Aliyu Yusuf Aliyu</h3>
                 <p>Presidential Candidates</p>
               </div>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="speaker" data-aos="fade-up" data-aos-delay="300">
-              <img src="../public/assets/img/speakers/6.jpg" alt="Speaker 6" class="img-fluid">
+              <img src="../public/images/candidate07.jpg" alt="candidate 6" class="img-fluid">
               <div class="details">
-                <h3><a href="speaker-details.html">Abubaka Fatimah Mariam</a></h3>
+                <h3>Abubaka Fatimah Mariam</h3>
                 <p>Presidential Candidates</p>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -189,12 +193,10 @@
 
       <div class="gallery-slider swiper">
         <div class="swiper-wrapper align-items-center">
-          <div class="swiper-slide"><a href="../public/assets/img/gallery/1.jpg" class="gallery-lightbox"><img src="../public/assets/img/gallery/1.jpg" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a href="../public/assets/img/gallery/2.jpg" class="gallery-lightbox"><img src="../public/assets/img/gallery/2.jpg" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a href="../public/assets/img/gallery/3.png" class="gallery-lightbox"><img src="../public/assets/img/gallery/3.png" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a href="../public/assets/img/gallery/4.jpg" class="gallery-lightbox"><img src="../public/assets/img/gallery/4.jpg" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a href="../public/assets/img/gallery/5.jpg" class="gallery-lightbox"><img src="../public/assets/img/gallery/5.jpg" class="img-fluid" alt=""></a></div>
-          <div class="swiper-slide"><a href="../public/assets/img/gallery/6.png" class="gallery-lightbox"><img src="../public/assets/img/gallery/6.png" class="img-fluid" alt=""></a></div>
+         <% for(const party of parties){%>
+            <div class="swiper-slide"><a href="../public/images/ADC.jpg" class="gallery-lightbox"><img src="<%-party.logo%>" class="img-fluid" alt=""></a></div>
+          <%}%>
+          
           
         </div>
         <div class="swiper-pagination"></div>

@@ -4,47 +4,71 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="../public/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <title>vote result</title>
 </head>
 <body>
+    <h1 class="text-center">Election Live Result</h1>
+    <div class="table-container">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Party</th>
+                    <th>Votes</th>
+                </tr>
+            </thead>
+            
+            <%for(const voteCount of result){ %>
+                <tbody>
+                    <tr>
+                        <td><%-voteCount.name%></td>
+                        <td><%-voteCount.count%></td>
+                    </tr>
+                </tbody>
+                
+           <%}%>
+           
+    
+        </table>
+    
+        <p>Total Votes : <%-votes.count%></p>
+    </div>
 
-    <table>
-        <tr>
-            <th>Party</th>
-            <th>Votes</th>
-        </tr>
-        <%for(const voteCount of result){ %>
 
-            <tr>
-                <td><%-voteCount.name%></td>
-                <td><%-voteCount.count%></td>
-            </tr>
-       <%}%>
-       
-
-    </table>
-
-    <p>Total Votes : <%-votes.count%></p>
 
 
 
 
 <style>
-    table{
-        border-collapse: collapse;
-        width: 100%;
-        margin: 2em auto;
-    }
+   body{
+    background-color: #000019 !important;
+    
+   }
 
-    th, td{
-        text-align: left;
-        padding: 8px;
-    }
+   h1{
+    color: #f2f2f2;
+    margin-top: 2em;
+   }
 
-    tr:nth-child(even){
-        background-color: aquamarine;
-    }
+    .table-container{
+        background-color: #f2f2f2;
+        color: #000019;
+       max-width: 65% ;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       margin-left: auto;
+       margin-right: auto;
+       margin-top: 4em;
+       border-radius: 8px;
+    } 
+
+    
 </style>
 
+<script src="../public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="public/bootstrap/js/jquery.js"></script>
+<script src="public/bootstrap/js/popper.min.js"></script>
+<script src="public/bootstrap/js/boostrap.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { voterLogin, verify, voterForm, addVoter, viewDashboard, logout } = require('../controller/voterController');
+const { voterLogin, verify, voterForm, addVoter, viewDashboard, logout, viewProfile } = require('../controller/voterController');
 const authenticate = require('../middlewares/authenticate');
 const registerValidators = require('../validators/registerValidator');
 
@@ -15,9 +15,7 @@ router.get("/user-login", (req, res)=>{
 router.get("/dashboard", authenticate, viewDashboard)
 router.get("/logout", logout)
 
-router.get("/profile", (req, res)=>{
-    res.render("users-profile");
-  })
+router.get("/profile", viewProfile)
 
 
 module.exports = router

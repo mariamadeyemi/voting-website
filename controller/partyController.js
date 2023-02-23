@@ -1,3 +1,5 @@
+const Candidate = require("../models/Candidate");
+const connection = require("../models/connection");
 const Party = require("../models/Party");
 
 let partyForm = (req, res)=>{
@@ -27,12 +29,14 @@ let addParty = async(req, res)=>{
   } catch (error) {
       res.send(error.message)
   }
-  }  
+  }
 
   let getParties = async (req, res) => {
     try {
         let parties = await Party.fetch()
-        res.render('index', { parties })
+        let sql = `SELECT * FROM candidates WHERE election_id = 1`
+        let [row] = await connection.execute(sql)
+        res.render('index', { parties, row })
     } catch (error) {
         res.send(error.message)
     }

@@ -9,7 +9,7 @@ const electionRoute = require("./routes/electionRoute");
 const partyRoute = require("./routes/partyRoute");
 const voteRoute = require("./routes/voteRoute");
 const voterRoute = require("./routes/voterRoute");
-
+const port = process.env.PORT || 5000 
 
 
 app.use(express.urlencoded({ extended: true }))
@@ -40,10 +40,10 @@ app.use((req, res, next)=>{
   next()
 })
 
-
-
 // set the view engine to ejs
 app.set('view engine', 'ejs');
+
+
 
 
 app.use(adminRoute)
@@ -53,8 +53,10 @@ app.use(partyRoute)
 app.use(voteRoute)
 app.use(voterRoute)
 
+app.all('*', (req, res) => {
+  res.status(404).render('notFound');
+});
 
-
-app.listen(5000, ()=>{
-  console.log('Server is listening on port 5000');
+app.listen(port, ()=>{
+  console.log('Server connected');
 });

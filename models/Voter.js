@@ -3,6 +3,7 @@ const connection = require('./connection');
 
 
 class Voter extends User {
+  
     async findOne(){
         let sql = `SELECT * FROM voters WHERE email_address = ?`
         let [rows] = await connection.execute(sql, [this.email]);

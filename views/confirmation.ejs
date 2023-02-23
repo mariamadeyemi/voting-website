@@ -4,18 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../public/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <title>confirmation page</title>
     <style>
     
     </style>
 </head>
 
-<body style="background-color: white;">
-    <img src="../public/images/tick.png" alt="correct-icon" style="margin-left:30rem">
-    <h1 style="text-align:center">CONGRATULATIONS!</h1>
-    <P style="text-align:center">You have successfully voted </P>
-
+<body>
+    <div class="container text-center p-5">
+        <img src="../public/images/tick.png" alt="correct-icon" class="img-fluid" width="100px">
+        <h1 class="confirm-heading">CONGRATULATIONS!</h1>
+        <P class="confirm-text">You have successfully voted </P>
+        <a href="/dashboard" class="btn btn-dark">Go Back To Dashbord</a>
+    </div>
+    
     <%- include('partials/flash'); %>
 
+
+    <script src="../public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="public/bootstrap/js/jquery.js"></script>
+    <script src="public/bootstrap/js/popper.min.js"></script>
+    <script src="public/bootstrap/js/boostrap.js"></script>
 </body>
 </html>

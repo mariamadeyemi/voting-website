@@ -7,13 +7,13 @@ const nodemailer = require("nodemailer")
             let transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
-                user: 'favourorungbemi310@gmail.com', // Your email id
-                pass: 'errrxqfdnbfghsok' // Your password
+                user: process.env.Email, // Your email id
+                pass: process.env.PASSWORD // Your password
                 }
               });
             
                await transporter.sendMail({
-                from: "adeyemijolade@gmail.com", 
+                from: process.env.From, 
                 to: email,
                 subject: "Hello ✔", 
                 html: "<a href= 'http://localhost:5000/verify_email?token="+ id + "'>Login</a>" ///verify_email?
